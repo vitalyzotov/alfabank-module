@@ -135,7 +135,7 @@ public class AlfabankReportRepositoryFiles implements AccountReportRepository<Al
                 } catch (ParseException e) {
                     throw new IllegalArgumentException(e);
                 }
-            }).collect(Collectors.toList());
+            }).toList();
 
             return new AccountReport<>(reportId, operations);
         } catch (FileNotFoundException e) {
@@ -203,7 +203,7 @@ public class AlfabankReportRepositoryFiles implements AccountReportRepository<Al
 
         return Arrays.stream(Objects.requireNonNull(this.getBaseDirectory().listFiles(filter)))
                 .map(MAPPER)
-                .collect(Collectors.toList());
+                .toList();
 
     }
 
@@ -214,7 +214,7 @@ public class AlfabankReportRepositoryFiles implements AccountReportRepository<Al
 
         return Arrays.stream(Objects.requireNonNull(this.getBaseDirectory().listFiles(filter)))
                 .map(MAPPER)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

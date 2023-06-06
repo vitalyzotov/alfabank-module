@@ -135,7 +135,7 @@ public class AccountReportServiceAlfabank implements AccountReportService {
         Country country;
         try {
             country = new Country(posInfo.country());
-        } catch (IllegalArgumentException ex) {
+        }catch (IllegalArgumentException | NullPointerException ex) {
             country = null;
         }
         return country == null ? null : new PosTerminal(
