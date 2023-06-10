@@ -63,7 +63,9 @@ public class AccountReportRepositoryFilesTest {
                 assertThat(cardNumber.value()).isNotEmpty();
 
                 PosTerminal posTerminal = AccountReportServiceAlfabank.makePosTerminal(card.posInfo());
-                assertThat(posTerminal.country()).isNotNull();
+                assertThat(posTerminal)
+                        .isNotNull()
+                        .extracting(PosTerminal::country).isNotNull();
             }
         }
 

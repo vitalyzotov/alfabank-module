@@ -36,17 +36,4 @@ public record CardOperation(
         return sameValueAs(that);
     }
 
-    @Override
-    public String toString() {
-        return "CardOperation{" +
-                "cardNumber='" + cardNumber + '\'' +
-                ", posInfo=" + posInfo +
-                ", authDate=" + authDate +
-                ", purchaseDate=" + purchaseDate +
-                ", amount=" + amount +
-                ", currency='" + currency + '\'' +
-                ", extraInfo='" + extraInfo + '\'' +
-                ", mcc='" + mcc + '\'' +
-                '}';
-    }
 }

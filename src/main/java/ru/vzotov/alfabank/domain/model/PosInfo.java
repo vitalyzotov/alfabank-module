@@ -27,15 +27,4 @@ public record PosInfo(
         PosInfo posInfo = (PosInfo) o;
         return sameValueAs(posInfo);
     }
-
-    @Override
-    public String toString() {
-        return "PosInfo{" +
-                "terminalId='" + terminalId + '\'' +
-                ", country='" + country + '\'' +
-                ", city='" + city + '\'' +
-                ", street='" + street + '\'' +
-                ", merchant='" + merchant + '\'' +
-                '}';
-    }
 }

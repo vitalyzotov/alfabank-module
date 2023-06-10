@@ -82,6 +82,7 @@ public class AccountReportServiceAlfabank implements AccountReportService {
         for (AlfabankOperation row : report.operations()) {
             final OperationType type = row.withdraw() > row.deposit() ? WITHDRAW : DEPOSIT;
 
+            //noinspection ConstantConditions
             Validate.isTrue(WITHDRAW.equals(type) || DEPOSIT.equals(type));
             Validate.isTrue(DEPOSIT.equals(type) || Precision.equals(row.deposit(), 0.00d, 0.001d));
             Validate.isTrue(WITHDRAW.equals(type) || Precision.equals(row.withdraw(), 0.00d, 0.001d));
