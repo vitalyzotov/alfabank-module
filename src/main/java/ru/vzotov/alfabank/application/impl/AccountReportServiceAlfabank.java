@@ -3,8 +3,8 @@ package ru.vzotov.alfabank.application.impl;
 import ru.vzotov.alfabank.domain.model.AlfabankOperation;
 import ru.vzotov.alfabank.domain.model.CardOperation;
 import ru.vzotov.alfabank.domain.model.PosInfo;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.apache.commons.math3.util.Precision;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,6 +82,7 @@ public class AccountReportServiceAlfabank implements AccountReportService {
         for (AlfabankOperation row : report.operations()) {
             final OperationType type = row.withdraw() > row.deposit() ? WITHDRAW : DEPOSIT;
 
+            //noinspection ConstantConditions
             Validate.isTrue(WITHDRAW.equals(type) || DEPOSIT.equals(type));
             Validate.isTrue(DEPOSIT.equals(type) || Precision.equals(row.deposit(), 0.00d, 0.001d));
             Validate.isTrue(WITHDRAW.equals(type) || Precision.equals(row.withdraw(), 0.00d, 0.001d));
@@ -135,7 +136,7 @@ public class AccountReportServiceAlfabank implements AccountReportService {
         Country country;
         try {
             country = new Country(posInfo.country());
-        } catch (IllegalArgumentException ex) {
+        }catch (IllegalArgumentException | NullPointerException ex) {
             country = null;
         }
         return country == null ? null : new PosTerminal(

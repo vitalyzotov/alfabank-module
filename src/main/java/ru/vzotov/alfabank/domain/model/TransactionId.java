@@ -1,23 +1,16 @@
 package ru.vzotov.alfabank.domain.model;
 
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 import ru.vzotov.ddd.shared.ValueObject;
 
 import java.util.Objects;
 
-public class TransactionId implements ValueObject<TransactionId> {
+public record TransactionId(String reference) implements ValueObject<TransactionId> {
 
     private static final String HOLD = "HOLD";
 
-    private final String reference;
-
-    public TransactionId(String reference) {
+    public TransactionId {
         Validate.notNull(reference);
-        this.reference = reference;
-    }
-
-    public String reference() {
-        return reference;
     }
 
     public boolean isHold() {

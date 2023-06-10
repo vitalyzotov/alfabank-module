@@ -1,18 +1,16 @@
 package ru.vzotov.alfabank.application.impl;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import ru.vzotov.alfabank.domain.model.AlfabankOperation;
-import ru.vzotov.alfabank.domain.model.TransactionId;
 import ru.vzotov.accounting.application.AccountNotFoundException;
 import ru.vzotov.accounting.application.AccountReportNotFoundException;
 import ru.vzotov.accounting.application.AccountingService;
 import ru.vzotov.accounting.domain.model.AccountReport;
 import ru.vzotov.accounting.domain.model.AccountReportId;
 import ru.vzotov.accounting.domain.model.AccountReportRepository;
+import ru.vzotov.alfabank.domain.model.AlfabankOperation;
+import ru.vzotov.alfabank.domain.model.TransactionId;
 import ru.vzotov.banking.domain.model.AccountNumber;
 import ru.vzotov.banking.domain.model.OperationId;
 import ru.vzotov.banking.domain.model.OperationType;
@@ -24,7 +22,6 @@ import java.time.ZoneOffset;
 import java.util.Collections;
 import java.util.List;
 
-@RunWith(JUnit4.class)
 public class AccountReportServiceImplTest {
 
     private AccountReportServiceAlfabank service;
@@ -32,7 +29,7 @@ public class AccountReportServiceImplTest {
     private AccountReportRepository<AlfabankOperation> reportRepository;
     private AccountingService accountingService;
 
-    @Before
+    @BeforeEach
     @SuppressWarnings("unchecked")
     public void setUp() throws Exception {
         reportRepository = Mockito.mock(AccountReportRepository.class);

@@ -4,17 +4,17 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.vzotov.accounting.domain.model.AccountReport;
+import ru.vzotov.accounting.domain.model.AccountReportId;
+import ru.vzotov.accounting.domain.model.AccountReportRepository;
 import ru.vzotov.alfabank.domain.model.AlfabankOperation;
 import ru.vzotov.alfabank.domain.model.CardOperation;
 import ru.vzotov.alfabank.domain.model.PosInfo;
 import ru.vzotov.alfabank.domain.model.TransactionId;
-import ru.vzotov.accounting.domain.model.AccountReport;
-import ru.vzotov.accounting.domain.model.AccountReportId;
-import ru.vzotov.accounting.domain.model.AccountReportRepository;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -40,7 +40,6 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import static java.time.temporal.ChronoField.DAY_OF_MONTH;
@@ -135,7 +134,7 @@ public class AlfabankReportRepositoryFiles implements AccountReportRepository<Al
                 } catch (ParseException e) {
                     throw new IllegalArgumentException(e);
                 }
-            }).collect(Collectors.toList());
+            }).toList();
 
             return new AccountReport<>(reportId, operations);
         } catch (FileNotFoundException e) {
@@ -203,7 +202,7 @@ public class AlfabankReportRepositoryFiles implements AccountReportRepository<Al
 
         return Arrays.stream(Objects.requireNonNull(this.getBaseDirectory().listFiles(filter)))
                 .map(MAPPER)
-                .collect(Collectors.toList());
+                .toList();
 
     }
 
@@ -214,7 +213,7 @@ public class AlfabankReportRepositoryFiles implements AccountReportRepository<Al
 
         return Arrays.stream(Objects.requireNonNull(this.getBaseDirectory().listFiles(filter)))
                 .map(MAPPER)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

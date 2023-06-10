@@ -1,16 +1,14 @@
 package ru.vzotov.alfabank.infrastructure.fs;
 
-import ru.vzotov.alfabank.application.impl.AccountReportServiceAlfabank;
-import ru.vzotov.alfabank.domain.model.AlfabankOperation;
-import ru.vzotov.alfabank.domain.model.CardOperation;
-import ru.vzotov.alfabank.domain.model.PosInfo;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.vzotov.accounting.domain.model.AccountReport;
 import ru.vzotov.accounting.domain.model.AccountReportId;
+import ru.vzotov.alfabank.application.impl.AccountReportServiceAlfabank;
+import ru.vzotov.alfabank.domain.model.AlfabankOperation;
+import ru.vzotov.alfabank.domain.model.CardOperation;
+import ru.vzotov.alfabank.domain.model.PosInfo;
 import ru.vzotov.banking.domain.model.CardNumber;
 import ru.vzotov.banking.domain.model.City;
 import ru.vzotov.banking.domain.model.Country;
@@ -28,7 +26,6 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(JUnit4.class)
 public class AccountReportRepositoryFilesTest {
 
     private static final Logger log = LoggerFactory.getLogger(AccountReportRepositoryFilesTest.class);
@@ -66,7 +63,9 @@ public class AccountReportRepositoryFilesTest {
                 assertThat(cardNumber.value()).isNotEmpty();
 
                 PosTerminal posTerminal = AccountReportServiceAlfabank.makePosTerminal(card.posInfo());
-                assertThat(posTerminal.country()).isNotNull();
+                assertThat(posTerminal)
+                        .isNotNull()
+                        .extracting(PosTerminal::country).isNotNull();
             }
         }
 
